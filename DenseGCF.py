@@ -718,7 +718,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 # from utility.helper import *
 # from utility.batch_test import *
 
-class RGCF(object):
+class DenseGCF(object):
 
     def __init__(self, data_config):
         # argument settings
@@ -762,7 +762,7 @@ class RGCF(object):
         # initialization of model parameters
         self.weights = self._init_weights()
 
-        self.ua_embeddings, self.ia_embeddings = self._create_ngcf_embed()
+        self.ua_embeddings, self.ia_embeddings = self._create_denseGCF_embed()
 
         self.u_g_embeddings = tf.nn.embedding_lookup(self.ua_embeddings, self.users)
         self.pos_i_g_embeddings = tf.nn.embedding_lookup(self.ia_embeddings, self.pos_items)
@@ -831,7 +831,7 @@ class RGCF(object):
         return A_fold_hat
 
 
-    def _create_ngcf_embed(self):
+    def _create_denseGCF_embed(self):
 
         A_fold_hat = self._split_A_hat(self.norm_adj)
 
@@ -929,7 +929,7 @@ if __name__ == '__main__':
 
             t0 = time()
 
-            model = RGCF(data_config=config)
+            model = DenseGCF(data_config=config)
 
             config = tf.compat.v1.ConfigProto()
             config.gpu_options.allow_growth = True
@@ -998,7 +998,7 @@ if __name__ == '__main__':
                                 ret['precision'][0], ret['precision'][-1], ret['hit_ratio'][0], ret['hit_ratio'][-1],
                                 ret['ndcg'][0], ret['ndcg'][-1])
                     print(perf_str)
-                    fr=open('./RGCF_ConKB.txt','a')
+                    fr=open('./DenseGCF.txt','a')
                     fr.write(perf_str)
                     fr.write('\n')
                     fr.close()
@@ -1035,7 +1035,6 @@ if __name__ == '__main__':
             f.close()
 
 
-# In[ ]:
 
 
 
