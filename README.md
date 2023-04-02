@@ -1,5 +1,6 @@
 # GraphConvolutionalNetwork-Using-Dense-network-for-Recommender-System
-Source code for using GCN with dense embedding for improve performance of NGCF
+* Source code for using GCN with dense embedding for improve performance of NGCF
+* Link NGCF github: https://github.com/xiangwang1223/neural_graph_collaborative_filtering
 
 # Install
 * Source code has already changed to new version of python
